@@ -1,5 +1,7 @@
 """
 Simple module to draw a phylogeny using Turtle Graphics
+
+mostly used as an extra test of the node class
 """
 
 import math

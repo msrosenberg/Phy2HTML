@@ -242,8 +242,8 @@ class Node:
 
 def read_newick_tree(tree_str: str) -> Node:
     """
-    Translate a string representing a tree in Newick format into the internal
-    tree struture and return the node representing the root.
+    Translate a string representing a tree in Newick format into the internal tree structure and return the
+    node representing the root.
     """
     symbols = "(),;"
     i = 0
@@ -283,7 +283,7 @@ def read_newick_tree(tree_str: str) -> Node:
 
 def main():
     """
-    some basic tests of the code
+    some basic code tests
     """
     with open("mammal_tree.nwk", "r") as infile:
         newick_str = infile.readline()

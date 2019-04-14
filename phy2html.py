@@ -100,15 +100,12 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
     """
 
     """
-    the following calcuates the number of pixels necessary for the horizontal line connecting the node to it's 
-    ancestor
+    determine the number of columns for the branch connecting a node to its ancestor
     """
     if tree.ancestor is not None:
         col_span = tree.node_depth - tree.ancestor.node_depth
     else:
         col_span = 0
-
-    # print(min_col, max_col, min_row, max_row, col_span)
 
     """
     if the node has descendants, first draw all of the descendants in the box which starts in the column to the 
@@ -140,33 +137,29 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
             top_row = bottom_row + rows_per_tip + 1
 
         """
-        draw the vertical line connecting the descendants at the horizontal position of the node
+        add the vertical line connecting the descendants at the horizontal position of the node
         """
-        # print(vert_top_row, vert_bottom_row, min_col+col_span)
         new_line = VLine(vert_top_row, vert_bottom_row - vert_top_row + 1, min_col+col_span)
         vlines.append(new_line)
 
         """
-        the vertical position of the node should be the midpoint of the
-        vertical line connecting the descendants
+        the vertical position of the node should be the midpoint of the vertical line connecting the descendants
         """
         row = ((vert_bottom_row - vert_top_row) // 2) + vert_top_row
-        # print(row)
     else:  # this is a tip node
         """
-        if the node has no descendants, figure out the vertical position as the midpoint of the vertical bounds
+        if the node has no descendants, add it to the taxon list
         """
         row = min_row
         new_taxon = Taxon(tree, row)
         taxa.append(new_taxon)
 
-    # draw the horizontal line connecting the node to its ancestor
+    # add the branch connecting the node to its ancestor
     if col_span > 0:
         new_branch = Branch(min_col+1, col_span, row)
         branches.append(new_branch)
 
     return row
-    # return y
 
 
 def calculate_tree(tree: tree_utils.Node, nrows: int, ncols: int, rows_per_tip: int) -> Tuple[list, list, list]:
@@ -201,7 +194,6 @@ def create_html_tree(inname: str, outname: str, rows_per_tip: int = 2) -> None:
     ntips = tree.n_tips()
     nrows = total_rows_per_node(ntips, rows_per_tip)
     ncols = tree.max_node_tip_count() + 1
-    # print("rows = {}, cols = {}".format(nrows, ncols))
     add_node_depth(tree, ncols+1)
     taxa, branches, vlines = calculate_tree(tree, nrows, ncols, rows_per_tip)
     with open(outname, "w") as outfile:
