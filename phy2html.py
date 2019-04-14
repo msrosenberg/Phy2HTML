@@ -45,8 +45,8 @@ def write_style_to_head(outfile: TextIO, nrows: int, ncols: int, taxa: list, bra
     outfile.write("    <style>\n")
     outfile.write("      .phylogeny {\n")
     outfile.write("                   display: grid;\n")
-    outfile.write("                   grid-template-rows: repeat({} 20px);\n".format(nrows))
-    outfile.write("                   grid-template-columns: repeat({} 40px) 200px;\n".format(ncols-1))
+    outfile.write("                   grid-template-rows: repeat({}, 20px);\n".format(nrows))
+    outfile.write("                   grid-template-columns: repeat({}, 40px) 200px;\n".format(ncols-1))
     outfile.write("                 }\n")
     outfile.write("      .taxon-name { align-self: center; padding-left: 10px }\n")
     outfile.write("      .genus-species-name {font-style: italic }\n")
@@ -103,11 +103,12 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
     the following calcuates the number of pixels necessary for the horizontal line connecting the node to it's 
     ancestor
     """
-    # x = math.trunc(tree.branch_length * scale)
     if tree.ancestor is not None:
         col_span = tree.node_depth - tree.ancestor.node_depth
     else:
         col_span = 0
+
+    # print(min_col, max_col, min_row, max_row, col_span)
 
     """
     if the node has descendants, first draw all of the descendants in the box which starts in the column to the 
@@ -116,7 +117,7 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
     if tree.n_descendants() > 0:  # this is an internal node
         vert_top_row = 0
         vert_bottom_row = 0
-        nd = tree.n_tips()
+        # nd = tree.n_tips()
         top_row = min_row
         for i, d in enumerate(tree.descendants):
             """
@@ -124,7 +125,7 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
             """
             ndd = d.n_tips()
             d_rows = total_rows_per_node(ndd, rows_per_tip)
-            bottom_row = min_row + d_rows
+            bottom_row = top_row + d_rows - 1
             # draw the descendant in its own smaller bounded box
             row = tree_recursion(d, min_col + col_span, max_col, top_row, bottom_row, taxa, branches, vlines,
                                  rows_per_tip)
@@ -133,39 +134,35 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
             connecting all of the descendants
             """
             if i == 0:
-                vert_top_row = row
+                vert_top_row = row + 1
             elif i == tree.n_descendants() - 1:
                 vert_bottom_row = row
-            top_row = bottom_row
+            top_row = bottom_row + rows_per_tip + 1
 
         """
         draw the vertical line connecting the descendants at the horizontal position of the node
         """
-        new_line = VLine(vert_top_row, vert_bottom_row - vert_top_row, min_col)
+        # print(vert_top_row, vert_bottom_row, min_col+col_span)
+        new_line = VLine(vert_top_row, vert_bottom_row - vert_top_row + 1, min_col+col_span)
         vlines.append(new_line)
 
-        # turtle.penup()
-        # turtle.goto(min_row + x, bottom_vert_line)
-        # turtle.pendown()
-        # turtle.goto(min_row + x, top_vert_line)
-        # """
-        # the vertical position of the node should be the midpoint of the
-        # vertical line connecting the descendants
-        # """
-        # y = ((top_vert_line - bottom_vert_line) // 2) + bottom_vert_line
-        row = ((vert_bottom_row - vert_top_row) // 2) + vert_bottom_row
+        """
+        the vertical position of the node should be the midpoint of the
+        vertical line connecting the descendants
+        """
+        row = ((vert_bottom_row - vert_top_row) // 2) + vert_top_row
+        # print(row)
     else:  # this is a tip node
         """
         if the node has no descendants, figure out the vertical position as the midpoint of the vertical bounds
         """
-        # y = ((max_row - min_row) // 2) + min_row
         row = min_row
         new_taxon = Taxon(tree, row)
         taxa.append(new_taxon)
 
     # draw the horizontal line connecting the node to its ancestor
     if col_span > 0:
-        new_branch = Branch(min_col, col_span, row)
+        new_branch = Branch(min_col+1, col_span, row)
         branches.append(new_branch)
 
     return row
