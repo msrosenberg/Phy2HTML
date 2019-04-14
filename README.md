@@ -6,4 +6,4 @@ The display tree is simplistic compared to what advanced phylogenetic visualizat
 
 The program assumes/requires the tree to be rooted and it cannot contain reticulations, although polytomies are fine. At this time the program does not scale branch lengths; it is designed for display of branching patterns not evolutionary distances. Branches are simply scaled to equal node depths.
 
-You can see a simple example by viewing [test_tree.html](http://htmlpreview.github.io/?https://github.com/msrosenberg/Phy2HTML/blob/master/test_tree.html) in a browser.
+You can see a simple example of the output by viewing [test_tree.html](http://htmlpreview.github.io/?https://github.com/msrosenberg/Phy2HTML/blob/master/test_tree.html) in a browser.
