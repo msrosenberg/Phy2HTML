@@ -4,10 +4,9 @@ Simple module to draw a phylogeny using Turtle Graphics
 
 import math
 import turtle
-from tree_utils import Node
 
 
-def tree_turtle(tree: Node, minx: int, maxx: int, miny: int, maxy: int, scale: float, draw_labels: bool,
+def tree_turtle(tree, minx: int, maxx: int, miny: int, maxy: int, scale: float, draw_labels: bool,
                 draw_branch_lengths: bool) -> int:
     """
     use turtle graphics to draw the tree

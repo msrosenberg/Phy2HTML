@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <style>
+      .phylogeny {
+                   display: grid;
+                   grid-template-rows: repeat(42 20px);
+                   grid-template-columns: repeat(6 40px) 200px;
+                 }
+      .taxon-name { align-self: center; padding-left: 10px }
+      .genus-species-name {font-style: italic }
+      .branch-line { border-bottom: solid black 1px; text-align: center }
+      .vert-line { border-right: solid black 1px }
+
+	     #taxon1 { grid-area: 1 / 7 / span 2 / span 1 }
+	     #taxon2 { grid-area: 3 / 7 / span 2 / span 1 }
+	     #taxon3 { grid-area: 7 / 7 / span 2 / span 1 }
+	     #taxon4 { grid-area: 9 / 7 / span 2 / span 1 }
+	     #taxon5 { grid-area: 13 / 7 / span 2 / span 1 }
+	     #taxon6 { grid-area: 17 / 7 / span 2 / span 1 }
+	     #taxon7 { grid-area: 19 / 7 / span 2 / span 1 }
+	     #taxon8 { grid-area: 21 / 7 / span 2 / span 1 }
+	     #taxon9 { grid-area: 23 / 7 / span 2 / span 1 }
+	     #taxon10 { grid-area: 25 / 7 / span 2 / span 1 }
+	     #taxon11 { grid-area: 27 / 7 / span 2 / span 1 }
+
+	     #branch1 { grid-area: 1 / 5 / span 1 / span 1 }
+	     #branch2 { grid-area: 3 / 5 / span 1 / span 1 }
+	     #branch3 { grid-area: 4 / 1 / span 1 / span 4 }
+	     #branch4 { grid-area: 7 / 5 / span 1 / span 1 }
+	     #branch5 { grid-area: 9 / 5 / span 1 / span 1 }
+	     #branch6 { grid-area: 10 / 4 / span 1 / span 1 }
+	     #branch7 { grid-area: 13 / 4 / span 1 / span 2 }
+	     #branch8 { grid-area: 14 / 2 / span 1 / span 2 }
+	     #branch9 { grid-area: 17 / 3 / span 1 / span 3 }
+	     #branch10 { grid-area: 19 / 4 / span 1 / span 2 }
+	     #branch11 { grid-area: 21 / 5 / span 1 / span 1 }
+	     #branch12 { grid-area: 23 / 5 / span 1 / span 1 }
+	     #branch13 { grid-area: 24 / 4 / span 1 / span 1 }
+	     #branch14 { grid-area: 25 / 5 / span 1 / span 1 }
+	     #branch15 { grid-area: 27 / 5 / span 1 / span 1 }
+	     #branch16 { grid-area: 28 / 4 / span 1 / span 1 }
+	     #branch17 { grid-area: 32 / 3 / span 1 / span 1 }
+	     #branch18 { grid-area: 39 / 2 / span 1 / span 1 }
+	     #branch19 { grid-area: 51 / 1 / span 1 / span 1 }
+
+	     #vline1 { grid-area: 1 / 1 / span 2 / span 1 }
+	     #vline2 { grid-area: 7 / 4 / span 2 / span 1 }
+	     #vline3 { grid-area: 10 / 2 / span 3 / span 1 }
+	     #vline4 { grid-area: 21 / 4 / span 2 / span 1 }
+	     #vline5 { grid-area: 25 / 4 / span 2 / span 1 }
+	     #vline6 { grid-area: 19 / 3 / span 9 / span 1 }
+	     #vline7 { grid-area: 17 / 2 / span 15 / span 1 }
+	     #vline8 { grid-area: 14 / 1 / span 25 / span 1 }
+	     #vline9 { grid-area: 4 / 1 / span 47 / span 1 }
+
+    </style>
+  </head>
+  <body>
+    <div class="phylogeny_container">
+      <div class="phylogeny">
+
+        <div id="taxon1" class="genus-species-name taxon-name">Uca</div>
+        <div id="taxon2" class="genus-species-name taxon-name">Afruca</div>
+        <div id="taxon3" class="genus-species-name taxon-name">Minuca</div>
+        <div id="taxon4" class="genus-species-name taxon-name">Leptuca</div>
+        <div id="taxon5" class="genus-species-name taxon-name">Petruca</div>
+        <div id="taxon6" class="genus-species-name taxon-name">Austruca</div>
+        <div id="taxon7" class="genus-species-name taxon-name">Paraleptuca</div>
+        <div id="taxon8" class="genus-species-name taxon-name">Gelasimus</div>
+        <div id="taxon9" class="genus-species-name taxon-name">Cranuca</div>
+        <div id="taxon10" class="genus-species-name taxon-name">Tubuca</div>
+        <div id="taxon11" class="genus-species-name taxon-name">Xeruca</div>
+
+        <div id="branch1" class="branch-line">&nbsp;</div>
+        <div id="branch2" class="branch-line">&nbsp;</div>
+        <div id="branch3" class="branch-line">&nbsp;</div>
+        <div id="branch4" class="branch-line">&nbsp;</div>
+        <div id="branch5" class="branch-line">&nbsp;</div>
+        <div id="branch6" class="branch-line">&nbsp;</div>
+        <div id="branch7" class="branch-line">&nbsp;</div>
+        <div id="branch8" class="branch-line">&nbsp;</div>
+        <div id="branch9" class="branch-line">&nbsp;</div>
+        <div id="branch10" class="branch-line">&nbsp;</div>
+        <div id="branch11" class="branch-line">&nbsp;</div>
+        <div id="branch12" class="branch-line">&nbsp;</div>
+        <div id="branch13" class="branch-line">&nbsp;</div>
+        <div id="branch14" class="branch-line">&nbsp;</div>
+        <div id="branch15" class="branch-line">&nbsp;</div>
+        <div id="branch16" class="branch-line">&nbsp;</div>
+        <div id="branch17" class="branch-line">&nbsp;</div>
+        <div id="branch18" class="branch-line">&nbsp;</div>
+        <div id="branch19" class="branch-line">&nbsp;</div>
+
+        <div id="vline1" class="vert-line">&nbsp;</div>
+        <div id="vline2" class="vert-line">&nbsp;</div>
+        <div id="vline3" class="vert-line">&nbsp;</div>
+        <div id="vline4" class="vert-line">&nbsp;</div>
+        <div id="vline5" class="vert-line">&nbsp;</div>
+        <div id="vline6" class="vert-line">&nbsp;</div>
+        <div id="vline7" class="vert-line">&nbsp;</div>
+        <div id="vline8" class="vert-line">&nbsp;</div>
+        <div id="vline9" class="vert-line">&nbsp;</div>
+
+      </div>
+    </div>
+  </body>
+</html>

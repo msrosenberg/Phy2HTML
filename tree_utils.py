@@ -22,6 +22,7 @@ class Node:
         self.__branch_length = 1
         self.__ancestor = None
         self.__descendants = list()
+        self.__node_depth = 0
 
     @property
     def name(self) -> str:
@@ -34,14 +35,24 @@ class Node:
     @property
     def branch_length(self) -> float:
         """
-        The branch length represents the distance from the node to it's
-        ancestor
+        The branch length represents the distance from the node to it's ancestor
         """
         return self.__branch_length
 
     @branch_length.setter
     def branch_length(self, value: float) -> None:
         self.__branch_length = value
+
+    @property
+    def node_depth(self) -> int:
+        """
+        The node depth represents the number of nodes between a node and its farthest descendent
+        """
+        return self.__node_depth
+
+    @node_depth.setter
+    def node_depth(self, value: int) -> None:
+        self.__node_depth = value
 
     @property
     def descendants(self) -> list:
@@ -158,6 +169,17 @@ class Node:
             dec_long = d.max_node_tip_length()
             long = max(long, dec_long)
         return long + self.branch_length
+
+    def max_node_tip_count(self) -> int:
+        """
+        find the largest number of nodes to pass through between the current node and its descendants,
+        counting itself as one
+        """
+        count = 0
+        for d in self.descendants:
+            d_max = d.max_node_tip_count()
+            count = max(count, d_max)
+        return count + 1
 
     def max_node_name(self) -> int:
         """
