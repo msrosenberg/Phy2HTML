@@ -268,7 +268,7 @@ def main():
     print("Input:", newick_str)
     print()
     tree = read_newick_tree(newick_str)
-    print("File read succesfully.")
+    print("File read successfully.")
     print("Tree contains", tree.n_tips(), "taxa.")
     taxa_list = tree.tip_names()
     for i, t in enumerate(taxa_list):
