@@ -11,3 +11,7 @@ You can see a simple example of the output by viewing [test_tree.html](http://ht
 Two sample Newick files are included, one with 11 taxa and one with 66. There is no technical limit to the size of the tree it can display, but very large trees will likely become visually unwieldy just due to the standard scaling issues one would have with any very large tree.
 
 The code is written in Python 3 and works in vanilla Python with no external dependencies.
+
+To use, simply run phy2ml.py (for an interactive mode that will prompt for input and output file names) or import it and call the function *create_html_tree(inname, outname)* where inname is the name of a simple text file containing a tree in Newick format and outname is the desired name for the HTML output.
+
+More complicated interfaces and options may be available on request.
