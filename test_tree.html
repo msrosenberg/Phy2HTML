@@ -3,277 +3,55 @@
     <style>
       .phylogeny {
                    display: grid;
-                   grid-template-rows: repeat(262, 20px);
-                   grid-template-columns: repeat(14, 40px) 200px;
+                   grid-template-rows: repeat(42, 20px);
+                   grid-template-columns: repeat(6, 40px) 200px;
                  }
       .taxon-name { align-self: center; padding-left: 10px }
       .genus-species-name {font-style: italic }
       .branch-line { border-bottom: solid black 1px; text-align: center }
       .vert-line { border-right: solid black 1px }
 
-	     #taxon1 { grid-area: 1 / 15 / span 2 / span 1 }
-	     #taxon2 { grid-area: 5 / 15 / span 2 / span 1 }
-	     #taxon3 { grid-area: 9 / 15 / span 2 / span 1 }
-	     #taxon4 { grid-area: 13 / 15 / span 2 / span 1 }
-	     #taxon5 { grid-area: 17 / 15 / span 2 / span 1 }
-	     #taxon6 { grid-area: 21 / 15 / span 2 / span 1 }
-	     #taxon7 { grid-area: 25 / 15 / span 2 / span 1 }
-	     #taxon8 { grid-area: 29 / 15 / span 2 / span 1 }
-	     #taxon9 { grid-area: 33 / 15 / span 2 / span 1 }
-	     #taxon10 { grid-area: 37 / 15 / span 2 / span 1 }
-	     #taxon11 { grid-area: 41 / 15 / span 2 / span 1 }
-	     #taxon12 { grid-area: 45 / 15 / span 2 / span 1 }
-	     #taxon13 { grid-area: 49 / 15 / span 2 / span 1 }
-	     #taxon14 { grid-area: 53 / 15 / span 2 / span 1 }
-	     #taxon15 { grid-area: 57 / 15 / span 2 / span 1 }
-	     #taxon16 { grid-area: 61 / 15 / span 2 / span 1 }
-	     #taxon17 { grid-area: 65 / 15 / span 2 / span 1 }
-	     #taxon18 { grid-area: 69 / 15 / span 2 / span 1 }
-	     #taxon19 { grid-area: 73 / 15 / span 2 / span 1 }
-	     #taxon20 { grid-area: 77 / 15 / span 2 / span 1 }
-	     #taxon21 { grid-area: 81 / 15 / span 2 / span 1 }
-	     #taxon22 { grid-area: 85 / 15 / span 2 / span 1 }
-	     #taxon23 { grid-area: 89 / 15 / span 2 / span 1 }
-	     #taxon24 { grid-area: 93 / 15 / span 2 / span 1 }
-	     #taxon25 { grid-area: 97 / 15 / span 2 / span 1 }
-	     #taxon26 { grid-area: 101 / 15 / span 2 / span 1 }
-	     #taxon27 { grid-area: 105 / 15 / span 2 / span 1 }
-	     #taxon28 { grid-area: 109 / 15 / span 2 / span 1 }
-	     #taxon29 { grid-area: 113 / 15 / span 2 / span 1 }
-	     #taxon30 { grid-area: 117 / 15 / span 2 / span 1 }
-	     #taxon31 { grid-area: 121 / 15 / span 2 / span 1 }
-	     #taxon32 { grid-area: 125 / 15 / span 2 / span 1 }
-	     #taxon33 { grid-area: 129 / 15 / span 2 / span 1 }
-	     #taxon34 { grid-area: 133 / 15 / span 2 / span 1 }
-	     #taxon35 { grid-area: 137 / 15 / span 2 / span 1 }
-	     #taxon36 { grid-area: 141 / 15 / span 2 / span 1 }
-	     #taxon37 { grid-area: 145 / 15 / span 2 / span 1 }
-	     #taxon38 { grid-area: 149 / 15 / span 2 / span 1 }
-	     #taxon39 { grid-area: 153 / 15 / span 2 / span 1 }
-	     #taxon40 { grid-area: 157 / 15 / span 2 / span 1 }
-	     #taxon41 { grid-area: 161 / 15 / span 2 / span 1 }
-	     #taxon42 { grid-area: 165 / 15 / span 2 / span 1 }
-	     #taxon43 { grid-area: 169 / 15 / span 2 / span 1 }
-	     #taxon44 { grid-area: 173 / 15 / span 2 / span 1 }
-	     #taxon45 { grid-area: 177 / 15 / span 2 / span 1 }
-	     #taxon46 { grid-area: 181 / 15 / span 2 / span 1 }
-	     #taxon47 { grid-area: 185 / 15 / span 2 / span 1 }
-	     #taxon48 { grid-area: 189 / 15 / span 2 / span 1 }
-	     #taxon49 { grid-area: 193 / 15 / span 2 / span 1 }
-	     #taxon50 { grid-area: 197 / 15 / span 2 / span 1 }
-	     #taxon51 { grid-area: 201 / 15 / span 2 / span 1 }
-	     #taxon52 { grid-area: 205 / 15 / span 2 / span 1 }
-	     #taxon53 { grid-area: 209 / 15 / span 2 / span 1 }
-	     #taxon54 { grid-area: 213 / 15 / span 2 / span 1 }
-	     #taxon55 { grid-area: 217 / 15 / span 2 / span 1 }
-	     #taxon56 { grid-area: 221 / 15 / span 2 / span 1 }
-	     #taxon57 { grid-area: 225 / 15 / span 2 / span 1 }
-	     #taxon58 { grid-area: 229 / 15 / span 2 / span 1 }
-	     #taxon59 { grid-area: 233 / 15 / span 2 / span 1 }
-	     #taxon60 { grid-area: 237 / 15 / span 2 / span 1 }
-	     #taxon61 { grid-area: 241 / 15 / span 2 / span 1 }
-	     #taxon62 { grid-area: 245 / 15 / span 2 / span 1 }
-	     #taxon63 { grid-area: 249 / 15 / span 2 / span 1 }
-	     #taxon64 { grid-area: 253 / 15 / span 2 / span 1 }
-	     #taxon65 { grid-area: 257 / 15 / span 2 / span 1 }
-	     #taxon66 { grid-area: 261 / 15 / span 2 / span 1 }
+	     #taxon1 { grid-area: 1 / 7 / span 2 / span 1 }
+	     #taxon2 { grid-area: 5 / 7 / span 2 / span 1 }
+	     #taxon3 { grid-area: 9 / 7 / span 2 / span 1 }
+	     #taxon4 { grid-area: 13 / 7 / span 2 / span 1 }
+	     #taxon5 { grid-area: 17 / 7 / span 2 / span 1 }
+	     #taxon6 { grid-area: 21 / 7 / span 2 / span 1 }
+	     #taxon7 { grid-area: 25 / 7 / span 2 / span 1 }
+	     #taxon8 { grid-area: 29 / 7 / span 2 / span 1 }
+	     #taxon9 { grid-area: 33 / 7 / span 2 / span 1 }
+	     #taxon10 { grid-area: 37 / 7 / span 2 / span 1 }
+	     #taxon11 { grid-area: 41 / 7 / span 2 / span 1 }
 
-	     #branch1 { grid-area: 1 / 14 / span 1 / span 1 }
-	     #branch2 { grid-area: 5 / 14 / span 1 / span 1 }
-	     #branch3 { grid-area: 3 / 13 / span 1 / span 1 }
-	     #branch4 { grid-area: 9 / 13 / span 1 / span 2 }
-	     #branch5 { grid-area: 6 / 12 / span 1 / span 1 }
-	     #branch6 { grid-area: 13 / 14 / span 1 / span 1 }
-	     #branch7 { grid-area: 17 / 14 / span 1 / span 1 }
-	     #branch8 { grid-area: 15 / 12 / span 1 / span 2 }
-	     #branch9 { grid-area: 11 / 11 / span 1 / span 1 }
-	     #branch10 { grid-area: 21 / 11 / span 1 / span 4 }
-	     #branch11 { grid-area: 16 / 10 / span 1 / span 1 }
-	     #branch12 { grid-area: 25 / 10 / span 1 / span 5 }
-	     #branch13 { grid-area: 21 / 9 / span 1 / span 1 }
-	     #branch14 { grid-area: 29 / 14 / span 1 / span 1 }
-	     #branch15 { grid-area: 33 / 14 / span 1 / span 1 }
-	     #branch16 { grid-area: 31 / 13 / span 1 / span 1 }
-	     #branch17 { grid-area: 37 / 13 / span 1 / span 2 }
-	     #branch18 { grid-area: 34 / 9 / span 1 / span 4 }
-	     #branch19 { grid-area: 28 / 8 / span 1 / span 1 }
-	     #branch20 { grid-area: 41 / 14 / span 1 / span 1 }
-	     #branch21 { grid-area: 45 / 14 / span 1 / span 1 }
-	     #branch22 { grid-area: 43 / 13 / span 1 / span 1 }
-	     #branch23 { grid-area: 49 / 13 / span 1 / span 2 }
-	     #branch24 { grid-area: 46 / 12 / span 1 / span 1 }
-	     #branch25 { grid-area: 53 / 14 / span 1 / span 1 }
-	     #branch26 { grid-area: 57 / 14 / span 1 / span 1 }
-	     #branch27 { grid-area: 55 / 12 / span 1 / span 2 }
-	     #branch28 { grid-area: 51 / 11 / span 1 / span 1 }
-	     #branch29 { grid-area: 61 / 11 / span 1 / span 4 }
-	     #branch30 { grid-area: 56 / 8 / span 1 / span 3 }
-	     #branch31 { grid-area: 42 / 7 / span 1 / span 1 }
-	     #branch32 { grid-area: 65 / 14 / span 1 / span 1 }
-	     #branch33 { grid-area: 69 / 14 / span 1 / span 1 }
-	     #branch34 { grid-area: 67 / 13 / span 1 / span 1 }
-	     #branch35 { grid-area: 73 / 14 / span 1 / span 1 }
-	     #branch36 { grid-area: 77 / 14 / span 1 / span 1 }
-	     #branch37 { grid-area: 75 / 13 / span 1 / span 1 }
-	     #branch38 { grid-area: 71 / 7 / span 1 / span 6 }
-	     #branch39 { grid-area: 57 / 6 / span 1 / span 1 }
-	     #branch40 { grid-area: 81 / 14 / span 1 / span 1 }
-	     #branch41 { grid-area: 85 / 14 / span 1 / span 1 }
-	     #branch42 { grid-area: 83 / 13 / span 1 / span 1 }
-	     #branch43 { grid-area: 89 / 14 / span 1 / span 1 }
-	     #branch44 { grid-area: 93 / 14 / span 1 / span 1 }
-	     #branch45 { grid-area: 91 / 13 / span 1 / span 1 }
-	     #branch46 { grid-area: 87 / 6 / span 1 / span 7 }
-	     #branch47 { grid-area: 72 / 5 / span 1 / span 1 }
-	     #branch48 { grid-area: 97 / 14 / span 1 / span 1 }
-	     #branch49 { grid-area: 101 / 14 / span 1 / span 1 }
-	     #branch50 { grid-area: 99 / 13 / span 1 / span 1 }
-	     #branch51 { grid-area: 105 / 13 / span 1 / span 2 }
-	     #branch52 { grid-area: 102 / 12 / span 1 / span 1 }
-	     #branch53 { grid-area: 109 / 12 / span 1 / span 3 }
-	     #branch54 { grid-area: 106 / 11 / span 1 / span 1 }
-	     #branch55 { grid-area: 113 / 14 / span 1 / span 1 }
-	     #branch56 { grid-area: 117 / 14 / span 1 / span 1 }
-	     #branch57 { grid-area: 115 / 11 / span 1 / span 3 }
-	     #branch58 { grid-area: 111 / 10 / span 1 / span 1 }
-	     #branch59 { grid-area: 121 / 14 / span 1 / span 1 }
-	     #branch60 { grid-area: 125 / 14 / span 1 / span 1 }
-	     #branch61 { grid-area: 123 / 10 / span 1 / span 4 }
-	     #branch62 { grid-area: 117 / 9 / span 1 / span 1 }
-	     #branch63 { grid-area: 129 / 14 / span 1 / span 1 }
-	     #branch64 { grid-area: 133 / 14 / span 1 / span 1 }
-	     #branch65 { grid-area: 131 / 13 / span 1 / span 1 }
-	     #branch66 { grid-area: 137 / 13 / span 1 / span 2 }
-	     #branch67 { grid-area: 134 / 12 / span 1 / span 1 }
-	     #branch68 { grid-area: 141 / 12 / span 1 / span 3 }
-	     #branch69 { grid-area: 138 / 11 / span 1 / span 1 }
-	     #branch70 { grid-area: 145 / 14 / span 1 / span 1 }
-	     #branch71 { grid-area: 149 / 14 / span 1 / span 1 }
-	     #branch72 { grid-area: 147 / 11 / span 1 / span 3 }
-	     #branch73 { grid-area: 143 / 9 / span 1 / span 2 }
-	     #branch74 { grid-area: 130 / 8 / span 1 / span 1 }
-	     #branch75 { grid-area: 153 / 14 / span 1 / span 1 }
-	     #branch76 { grid-area: 157 / 14 / span 1 / span 1 }
-	     #branch77 { grid-area: 155 / 8 / span 1 / span 6 }
-	     #branch78 { grid-area: 143 / 7 / span 1 / span 1 }
-	     #branch79 { grid-area: 161 / 14 / span 1 / span 1 }
-	     #branch80 { grid-area: 165 / 14 / span 1 / span 1 }
-	     #branch81 { grid-area: 163 / 7 / span 1 / span 7 }
-	     #branch82 { grid-area: 153 / 6 / span 1 / span 1 }
-	     #branch83 { grid-area: 169 / 14 / span 1 / span 1 }
-	     #branch84 { grid-area: 173 / 14 / span 1 / span 1 }
-	     #branch85 { grid-area: 171 / 13 / span 1 / span 1 }
-	     #branch86 { grid-area: 177 / 13 / span 1 / span 2 }
-	     #branch87 { grid-area: 174 / 12 / span 1 / span 1 }
-	     #branch88 { grid-area: 181 / 14 / span 1 / span 1 }
-	     #branch89 { grid-area: 185 / 14 / span 1 / span 1 }
-	     #branch90 { grid-area: 183 / 12 / span 1 / span 2 }
-	     #branch91 { grid-area: 179 / 11 / span 1 / span 1 }
-	     #branch92 { grid-area: 189 / 11 / span 1 / span 4 }
-	     #branch93 { grid-area: 184 / 10 / span 1 / span 1 }
-	     #branch94 { grid-area: 193 / 14 / span 1 / span 1 }
-	     #branch95 { grid-area: 197 / 14 / span 1 / span 1 }
-	     #branch96 { grid-area: 195 / 10 / span 1 / span 4 }
-	     #branch97 { grid-area: 190 / 9 / span 1 / span 1 }
-	     #branch98 { grid-area: 201 / 9 / span 1 / span 6 }
-	     #branch99 { grid-area: 196 / 6 / span 1 / span 3 }
-	     #branch100 { grid-area: 175 / 5 / span 1 / span 1 }
-	     #branch101 { grid-area: 124 / 4 / span 1 / span 1 }
-	     #branch102 { grid-area: 205 / 14 / span 1 / span 1 }
-	     #branch103 { grid-area: 209 / 14 / span 1 / span 1 }
-	     #branch104 { grid-area: 207 / 13 / span 1 / span 1 }
-	     #branch105 { grid-area: 213 / 14 / span 1 / span 1 }
-	     #branch106 { grid-area: 217 / 14 / span 1 / span 1 }
-	     #branch107 { grid-area: 215 / 13 / span 1 / span 1 }
-	     #branch108 { grid-area: 211 / 12 / span 1 / span 1 }
-	     #branch109 { grid-area: 221 / 14 / span 1 / span 1 }
-	     #branch110 { grid-area: 225 / 14 / span 1 / span 1 }
-	     #branch111 { grid-area: 223 / 12 / span 1 / span 2 }
-	     #branch112 { grid-area: 217 / 4 / span 1 / span 8 }
-	     #branch113 { grid-area: 171 / 3 / span 1 / span 1 }
-	     #branch114 { grid-area: 229 / 14 / span 1 / span 1 }
-	     #branch115 { grid-area: 233 / 14 / span 1 / span 1 }
-	     #branch116 { grid-area: 231 / 13 / span 1 / span 1 }
-	     #branch117 { grid-area: 237 / 13 / span 1 / span 2 }
-	     #branch118 { grid-area: 234 / 12 / span 1 / span 1 }
-	     #branch119 { grid-area: 241 / 14 / span 1 / span 1 }
-	     #branch120 { grid-area: 245 / 14 / span 1 / span 1 }
-	     #branch121 { grid-area: 243 / 12 / span 1 / span 2 }
-	     #branch122 { grid-area: 239 / 11 / span 1 / span 1 }
-	     #branch123 { grid-area: 249 / 14 / span 1 / span 1 }
-	     #branch124 { grid-area: 253 / 14 / span 1 / span 1 }
-	     #branch125 { grid-area: 251 / 11 / span 1 / span 3 }
-	     #branch126 { grid-area: 245 / 3 / span 1 / span 8 }
-	     #branch127 { grid-area: 208 / 2 / span 1 / span 1 }
-	     #branch128 { grid-area: 257 / 14 / span 1 / span 1 }
-	     #branch129 { grid-area: 261 / 14 / span 1 / span 1 }
-	     #branch130 { grid-area: 259 / 2 / span 1 / span 12 }
+	     #branch1 { grid-area: 1 / 6 / span 1 / span 1 }
+	     #branch2 { grid-area: 5 / 6 / span 1 / span 1 }
+	     #branch3 { grid-area: 3 / 2 / span 1 / span 4 }
+	     #branch4 { grid-area: 9 / 6 / span 1 / span 1 }
+	     #branch5 { grid-area: 13 / 6 / span 1 / span 1 }
+	     #branch6 { grid-area: 11 / 5 / span 1 / span 1 }
+	     #branch7 { grid-area: 17 / 5 / span 1 / span 2 }
+	     #branch8 { grid-area: 14 / 3 / span 1 / span 2 }
+	     #branch9 { grid-area: 21 / 4 / span 1 / span 3 }
+	     #branch10 { grid-area: 25 / 5 / span 1 / span 2 }
+	     #branch11 { grid-area: 29 / 6 / span 1 / span 1 }
+	     #branch12 { grid-area: 33 / 6 / span 1 / span 1 }
+	     #branch13 { grid-area: 31 / 5 / span 1 / span 1 }
+	     #branch14 { grid-area: 37 / 6 / span 1 / span 1 }
+	     #branch15 { grid-area: 41 / 6 / span 1 / span 1 }
+	     #branch16 { grid-area: 39 / 5 / span 1 / span 1 }
+	     #branch17 { grid-area: 32 / 4 / span 1 / span 1 }
+	     #branch18 { grid-area: 27 / 3 / span 1 / span 1 }
+	     #branch19 { grid-area: 21 / 2 / span 1 / span 1 }
 
-	     #vline1 { grid-area: 2 / 13 / span 4 / span 1 }
-	     #vline2 { grid-area: 4 / 12 / span 6 / span 1 }
-	     #vline3 { grid-area: 14 / 13 / span 4 / span 1 }
-	     #vline4 { grid-area: 7 / 11 / span 9 / span 1 }
-	     #vline5 { grid-area: 12 / 10 / span 10 / span 1 }
-	     #vline6 { grid-area: 17 / 9 / span 9 / span 1 }
-	     #vline7 { grid-area: 30 / 13 / span 4 / span 1 }
-	     #vline8 { grid-area: 32 / 12 / span 6 / span 1 }
-	     #vline9 { grid-area: 22 / 8 / span 13 / span 1 }
-	     #vline10 { grid-area: 42 / 13 / span 4 / span 1 }
-	     #vline11 { grid-area: 44 / 12 / span 6 / span 1 }
-	     #vline12 { grid-area: 54 / 13 / span 4 / span 1 }
-	     #vline13 { grid-area: 47 / 11 / span 9 / span 1 }
-	     #vline14 { grid-area: 52 / 10 / span 10 / span 1 }
-	     #vline15 { grid-area: 29 / 7 / span 28 / span 1 }
-	     #vline16 { grid-area: 66 / 13 / span 4 / span 1 }
-	     #vline17 { grid-area: 74 / 13 / span 4 / span 1 }
-	     #vline18 { grid-area: 68 / 12 / span 8 / span 1 }
-	     #vline19 { grid-area: 43 / 6 / span 29 / span 1 }
-	     #vline20 { grid-area: 82 / 13 / span 4 / span 1 }
-	     #vline21 { grid-area: 90 / 13 / span 4 / span 1 }
-	     #vline22 { grid-area: 84 / 12 / span 8 / span 1 }
-	     #vline23 { grid-area: 58 / 5 / span 30 / span 1 }
-	     #vline24 { grid-area: 98 / 13 / span 4 / span 1 }
-	     #vline25 { grid-area: 100 / 12 / span 6 / span 1 }
-	     #vline26 { grid-area: 103 / 11 / span 7 / span 1 }
-	     #vline27 { grid-area: 114 / 13 / span 4 / span 1 }
-	     #vline28 { grid-area: 107 / 10 / span 9 / span 1 }
-	     #vline29 { grid-area: 122 / 13 / span 4 / span 1 }
-	     #vline30 { grid-area: 112 / 9 / span 12 / span 1 }
-	     #vline31 { grid-area: 130 / 13 / span 4 / span 1 }
-	     #vline32 { grid-area: 132 / 12 / span 6 / span 1 }
-	     #vline33 { grid-area: 135 / 11 / span 7 / span 1 }
-	     #vline34 { grid-area: 146 / 13 / span 4 / span 1 }
-	     #vline35 { grid-area: 139 / 10 / span 9 / span 1 }
-	     #vline36 { grid-area: 118 / 8 / span 26 / span 1 }
-	     #vline37 { grid-area: 154 / 13 / span 4 / span 1 }
-	     #vline38 { grid-area: 131 / 7 / span 25 / span 1 }
-	     #vline39 { grid-area: 162 / 13 / span 4 / span 1 }
-	     #vline40 { grid-area: 144 / 6 / span 20 / span 1 }
-	     #vline41 { grid-area: 170 / 13 / span 4 / span 1 }
-	     #vline42 { grid-area: 172 / 12 / span 6 / span 1 }
-	     #vline43 { grid-area: 182 / 13 / span 4 / span 1 }
-	     #vline44 { grid-area: 175 / 11 / span 9 / span 1 }
-	     #vline45 { grid-area: 180 / 10 / span 10 / span 1 }
-	     #vline46 { grid-area: 194 / 13 / span 4 / span 1 }
-	     #vline47 { grid-area: 185 / 9 / span 11 / span 1 }
-	     #vline48 { grid-area: 191 / 8 / span 11 / span 1 }
-	     #vline49 { grid-area: 154 / 5 / span 43 / span 1 }
-	     #vline50 { grid-area: 73 / 4 / span 103 / span 1 }
-	     #vline51 { grid-area: 206 / 13 / span 4 / span 1 }
-	     #vline52 { grid-area: 214 / 13 / span 4 / span 1 }
-	     #vline53 { grid-area: 208 / 12 / span 8 / span 1 }
-	     #vline54 { grid-area: 222 / 13 / span 4 / span 1 }
-	     #vline55 { grid-area: 212 / 11 / span 12 / span 1 }
-	     #vline56 { grid-area: 125 / 3 / span 93 / span 1 }
-	     #vline57 { grid-area: 230 / 13 / span 4 / span 1 }
-	     #vline58 { grid-area: 232 / 12 / span 6 / span 1 }
-	     #vline59 { grid-area: 242 / 13 / span 4 / span 1 }
-	     #vline60 { grid-area: 235 / 11 / span 9 / span 1 }
-	     #vline61 { grid-area: 250 / 13 / span 4 / span 1 }
-	     #vline62 { grid-area: 240 / 10 / span 12 / span 1 }
-	     #vline63 { grid-area: 172 / 2 / span 74 / span 1 }
-	     #vline64 { grid-area: 258 / 13 / span 4 / span 1 }
-	     #vline65 { grid-area: 209 / 1 / span 51 / span 1 }
+	     #vline1 { grid-area: 2 / 5 / span 4 / span 1 }
+	     #vline2 { grid-area: 10 / 5 / span 4 / span 1 }
+	     #vline3 { grid-area: 12 / 4 / span 6 / span 1 }
+	     #vline4 { grid-area: 30 / 5 / span 4 / span 1 }
+	     #vline5 { grid-area: 38 / 5 / span 4 / span 1 }
+	     #vline6 { grid-area: 26 / 4 / span 14 / span 1 }
+	     #vline7 { grid-area: 22 / 3 / span 11 / span 1 }
+	     #vline8 { grid-area: 15 / 2 / span 13 / span 1 }
+	     #vline9 { grid-area: 4 / 1 / span 18 / span 1 }
 
     </style>
   </head>
@@ -281,72 +59,17 @@
     <div class="phylogeny_container">
       <div class="phylogeny">
 
-        <div id="taxon1" class="genus-species-name taxon-name">Megaptera</div>
-        <div id="taxon2" class="genus-species-name taxon-name">Tursiops</div>
-        <div id="taxon3" class="genus-species-name taxon-name">Hippopotamus</div>
-        <div id="taxon4" class="genus-species-name taxon-name">Tragelaphus</div>
-        <div id="taxon5" class="genus-species-name taxon-name">Okapia</div>
-        <div id="taxon6" class="genus-species-name taxon-name">Sus</div>
-        <div id="taxon7" class="genus-species-name taxon-name">Lama</div>
-        <div id="taxon8" class="genus-species-name taxon-name">Ceratotherium</div>
-        <div id="taxon9" class="genus-species-name taxon-name">Tapirus</div>
-        <div id="taxon10" class="genus-species-name taxon-name">Equus</div>
-        <div id="taxon11" class="genus-species-name taxon-name">Felis</div>
-        <div id="taxon12" class="genus-species-name taxon-name">Leopardus</div>
-        <div id="taxon13" class="genus-species-name taxon-name">Panthera</div>
-        <div id="taxon14" class="genus-species-name taxon-name">Canis</div>
-        <div id="taxon15" class="genus-species-name taxon-name">Ursus</div>
-        <div id="taxon16" class="genus-species-name taxon-name">Manis</div>
-        <div id="taxon17" class="genus-species-name taxon-name">Artibeus</div>
-        <div id="taxon18" class="genus-species-name taxon-name">Nycteris</div>
-        <div id="taxon19" class="genus-species-name taxon-name">Pteropus</div>
-        <div id="taxon20" class="genus-species-name taxon-name">Rousettus</div>
-        <div id="taxon21" class="genus-species-name taxon-name">Erinaceus</div>
-        <div id="taxon22" class="genus-species-name taxon-name">Sorex</div>
-        <div id="taxon23" class="genus-species-name taxon-name">Asioscalops</div>
-        <div id="taxon24" class="genus-species-name taxon-name">Condylura</div>
-        <div id="taxon25" class="genus-species-name taxon-name">Cavia</div>
-        <div id="taxon26" class="genus-species-name taxon-name">Hydrochoeris</div>
-        <div id="taxon27" class="genus-species-name taxon-name">Agouti</div>
-        <div id="taxon28" class="genus-species-name taxon-name">Erethizon</div>
-        <div id="taxon29" class="genus-species-name taxon-name">Myocastor</div>
-        <div id="taxon30" class="genus-species-name taxon-name">Dinomys</div>
-        <div id="taxon31" class="genus-species-name taxon-name">Hystrix</div>
-        <div id="taxon32" class="genus-species-name taxon-name">Heterocephalus</div>
-        <div id="taxon33" class="genus-species-name taxon-name">Mus</div>
-        <div id="taxon34" class="genus-species-name taxon-name">Rattus</div>
-        <div id="taxon35" class="genus-species-name taxon-name">Cricetus</div>
-        <div id="taxon36" class="genus-species-name taxon-name">Pedetes</div>
-        <div id="taxon37" class="genus-species-name taxon-name">Castor</div>
-        <div id="taxon38" class="genus-species-name taxon-name">Dipodomys</div>
-        <div id="taxon39" class="genus-species-name taxon-name">Tamias</div>
-        <div id="taxon40" class="genus-species-name taxon-name">Muscardinus</div>
-        <div id="taxon41" class="genus-species-name taxon-name">Sylvilagus</div>
-        <div id="taxon42" class="genus-species-name taxon-name">Ochotona</div>
-        <div id="taxon43" class="genus-species-name taxon-name">Hylobates</div>
-        <div id="taxon44" class="genus-species-name taxon-name">Homo</div>
-        <div id="taxon45" class="genus-species-name taxon-name">Macaca</div>
-        <div id="taxon46" class="genus-species-name taxon-name">Ateles</div>
-        <div id="taxon47" class="genus-species-name taxon-name">Callimico</div>
-        <div id="taxon48" class="genus-species-name taxon-name">Cynocephalus</div>
-        <div id="taxon49" class="genus-species-name taxon-name">Lemur</div>
-        <div id="taxon50" class="genus-species-name taxon-name">Tarsius</div>
-        <div id="taxon51" class="genus-species-name taxon-name">Tupaia</div>
-        <div id="taxon52" class="genus-species-name taxon-name">Choloepus_hoffmanni</div>
-        <div id="taxon53" class="genus-species-name taxon-name">Choloepus_didactylus</div>
-        <div id="taxon54" class="genus-species-name taxon-name">Tamandua</div>
-        <div id="taxon55" class="genus-species-name taxon-name">Myrmechophaga</div>
-        <div id="taxon56" class="genus-species-name taxon-name">Euphractus</div>
-        <div id="taxon57" class="genus-species-name taxon-name">Chaetophractus</div>
-        <div id="taxon58" class="genus-species-name taxon-name">Trichechus</div>
-        <div id="taxon59" class="genus-species-name taxon-name">Loxodonta</div>
-        <div id="taxon60" class="genus-species-name taxon-name">Procavia</div>
-        <div id="taxon61" class="genus-species-name taxon-name">Echinops</div>
-        <div id="taxon62" class="genus-species-name taxon-name">Orycteropus</div>
-        <div id="taxon63" class="genus-species-name taxon-name">Macroscelides</div>
-        <div id="taxon64" class="genus-species-name taxon-name">Elephantulus</div>
-        <div id="taxon65" class="genus-species-name taxon-name">Didelphis</div>
-        <div id="taxon66" class="genus-species-name taxon-name">Macropus</div>
+        <div id="taxon1" class="genus-species-name taxon-name">Uca</div>
+        <div id="taxon2" class="genus-species-name taxon-name">Afruca</div>
+        <div id="taxon3" class="genus-species-name taxon-name">Minuca</div>
+        <div id="taxon4" class="genus-species-name taxon-name">Leptuca</div>
+        <div id="taxon5" class="genus-species-name taxon-name">Petruca</div>
+        <div id="taxon6" class="genus-species-name taxon-name">Austruca</div>
+        <div id="taxon7" class="genus-species-name taxon-name">Paraleptuca</div>
+        <div id="taxon8" class="genus-species-name taxon-name">Gelasimus</div>
+        <div id="taxon9" class="genus-species-name taxon-name">Cranuca</div>
+        <div id="taxon10" class="genus-species-name taxon-name">Tubuca</div>
+        <div id="taxon11" class="genus-species-name taxon-name">Xeruca</div>
 
         <div id="branch1" class="branch-line">&nbsp;</div>
         <div id="branch2" class="branch-line">&nbsp;</div>
@@ -367,117 +90,6 @@
         <div id="branch17" class="branch-line">&nbsp;</div>
         <div id="branch18" class="branch-line">&nbsp;</div>
         <div id="branch19" class="branch-line">&nbsp;</div>
-        <div id="branch20" class="branch-line">&nbsp;</div>
-        <div id="branch21" class="branch-line">&nbsp;</div>
-        <div id="branch22" class="branch-line">&nbsp;</div>
-        <div id="branch23" class="branch-line">&nbsp;</div>
-        <div id="branch24" class="branch-line">&nbsp;</div>
-        <div id="branch25" class="branch-line">&nbsp;</div>
-        <div id="branch26" class="branch-line">&nbsp;</div>
-        <div id="branch27" class="branch-line">&nbsp;</div>
-        <div id="branch28" class="branch-line">&nbsp;</div>
-        <div id="branch29" class="branch-line">&nbsp;</div>
-        <div id="branch30" class="branch-line">&nbsp;</div>
-        <div id="branch31" class="branch-line">&nbsp;</div>
-        <div id="branch32" class="branch-line">&nbsp;</div>
-        <div id="branch33" class="branch-line">&nbsp;</div>
-        <div id="branch34" class="branch-line">&nbsp;</div>
-        <div id="branch35" class="branch-line">&nbsp;</div>
-        <div id="branch36" class="branch-line">&nbsp;</div>
-        <div id="branch37" class="branch-line">&nbsp;</div>
-        <div id="branch38" class="branch-line">&nbsp;</div>
-        <div id="branch39" class="branch-line">&nbsp;</div>
-        <div id="branch40" class="branch-line">&nbsp;</div>
-        <div id="branch41" class="branch-line">&nbsp;</div>
-        <div id="branch42" class="branch-line">&nbsp;</div>
-        <div id="branch43" class="branch-line">&nbsp;</div>
-        <div id="branch44" class="branch-line">&nbsp;</div>
-        <div id="branch45" class="branch-line">&nbsp;</div>
-        <div id="branch46" class="branch-line">&nbsp;</div>
-        <div id="branch47" class="branch-line">&nbsp;</div>
-        <div id="branch48" class="branch-line">&nbsp;</div>
-        <div id="branch49" class="branch-line">&nbsp;</div>
-        <div id="branch50" class="branch-line">&nbsp;</div>
-        <div id="branch51" class="branch-line">&nbsp;</div>
-        <div id="branch52" class="branch-line">&nbsp;</div>
-        <div id="branch53" class="branch-line">&nbsp;</div>
-        <div id="branch54" class="branch-line">&nbsp;</div>
-        <div id="branch55" class="branch-line">&nbsp;</div>
-        <div id="branch56" class="branch-line">&nbsp;</div>
-        <div id="branch57" class="branch-line">&nbsp;</div>
-        <div id="branch58" class="branch-line">&nbsp;</div>
-        <div id="branch59" class="branch-line">&nbsp;</div>
-        <div id="branch60" class="branch-line">&nbsp;</div>
-        <div id="branch61" class="branch-line">&nbsp;</div>
-        <div id="branch62" class="branch-line">&nbsp;</div>
-        <div id="branch63" class="branch-line">&nbsp;</div>
-        <div id="branch64" class="branch-line">&nbsp;</div>
-        <div id="branch65" class="branch-line">&nbsp;</div>
-        <div id="branch66" class="branch-line">&nbsp;</div>
-        <div id="branch67" class="branch-line">&nbsp;</div>
-        <div id="branch68" class="branch-line">&nbsp;</div>
-        <div id="branch69" class="branch-line">&nbsp;</div>
-        <div id="branch70" class="branch-line">&nbsp;</div>
-        <div id="branch71" class="branch-line">&nbsp;</div>
-        <div id="branch72" class="branch-line">&nbsp;</div>
-        <div id="branch73" class="branch-line">&nbsp;</div>
-        <div id="branch74" class="branch-line">&nbsp;</div>
-        <div id="branch75" class="branch-line">&nbsp;</div>
-        <div id="branch76" class="branch-line">&nbsp;</div>
-        <div id="branch77" class="branch-line">&nbsp;</div>
-        <div id="branch78" class="branch-line">&nbsp;</div>
-        <div id="branch79" class="branch-line">&nbsp;</div>
-        <div id="branch80" class="branch-line">&nbsp;</div>
-        <div id="branch81" class="branch-line">&nbsp;</div>
-        <div id="branch82" class="branch-line">&nbsp;</div>
-        <div id="branch83" class="branch-line">&nbsp;</div>
-        <div id="branch84" class="branch-line">&nbsp;</div>
-        <div id="branch85" class="branch-line">&nbsp;</div>
-        <div id="branch86" class="branch-line">&nbsp;</div>
-        <div id="branch87" class="branch-line">&nbsp;</div>
-        <div id="branch88" class="branch-line">&nbsp;</div>
-        <div id="branch89" class="branch-line">&nbsp;</div>
-        <div id="branch90" class="branch-line">&nbsp;</div>
-        <div id="branch91" class="branch-line">&nbsp;</div>
-        <div id="branch92" class="branch-line">&nbsp;</div>
-        <div id="branch93" class="branch-line">&nbsp;</div>
-        <div id="branch94" class="branch-line">&nbsp;</div>
-        <div id="branch95" class="branch-line">&nbsp;</div>
-        <div id="branch96" class="branch-line">&nbsp;</div>
-        <div id="branch97" class="branch-line">&nbsp;</div>
-        <div id="branch98" class="branch-line">&nbsp;</div>
-        <div id="branch99" class="branch-line">&nbsp;</div>
-        <div id="branch100" class="branch-line">&nbsp;</div>
-        <div id="branch101" class="branch-line">&nbsp;</div>
-        <div id="branch102" class="branch-line">&nbsp;</div>
-        <div id="branch103" class="branch-line">&nbsp;</div>
-        <div id="branch104" class="branch-line">&nbsp;</div>
-        <div id="branch105" class="branch-line">&nbsp;</div>
-        <div id="branch106" class="branch-line">&nbsp;</div>
-        <div id="branch107" class="branch-line">&nbsp;</div>
-        <div id="branch108" class="branch-line">&nbsp;</div>
-        <div id="branch109" class="branch-line">&nbsp;</div>
-        <div id="branch110" class="branch-line">&nbsp;</div>
-        <div id="branch111" class="branch-line">&nbsp;</div>
-        <div id="branch112" class="branch-line">&nbsp;</div>
-        <div id="branch113" class="branch-line">&nbsp;</div>
-        <div id="branch114" class="branch-line">&nbsp;</div>
-        <div id="branch115" class="branch-line">&nbsp;</div>
-        <div id="branch116" class="branch-line">&nbsp;</div>
-        <div id="branch117" class="branch-line">&nbsp;</div>
-        <div id="branch118" class="branch-line">&nbsp;</div>
-        <div id="branch119" class="branch-line">&nbsp;</div>
-        <div id="branch120" class="branch-line">&nbsp;</div>
-        <div id="branch121" class="branch-line">&nbsp;</div>
-        <div id="branch122" class="branch-line">&nbsp;</div>
-        <div id="branch123" class="branch-line">&nbsp;</div>
-        <div id="branch124" class="branch-line">&nbsp;</div>
-        <div id="branch125" class="branch-line">&nbsp;</div>
-        <div id="branch126" class="branch-line">&nbsp;</div>
-        <div id="branch127" class="branch-line">&nbsp;</div>
-        <div id="branch128" class="branch-line">&nbsp;</div>
-        <div id="branch129" class="branch-line">&nbsp;</div>
-        <div id="branch130" class="branch-line">&nbsp;</div>
 
         <div id="vline1" class="vert-line">&nbsp;</div>
         <div id="vline2" class="vert-line">&nbsp;</div>
@@ -488,62 +100,6 @@
         <div id="vline7" class="vert-line">&nbsp;</div>
         <div id="vline8" class="vert-line">&nbsp;</div>
         <div id="vline9" class="vert-line">&nbsp;</div>
-        <div id="vline10" class="vert-line">&nbsp;</div>
-        <div id="vline11" class="vert-line">&nbsp;</div>
-        <div id="vline12" class="vert-line">&nbsp;</div>
-        <div id="vline13" class="vert-line">&nbsp;</div>
-        <div id="vline14" class="vert-line">&nbsp;</div>
-        <div id="vline15" class="vert-line">&nbsp;</div>
-        <div id="vline16" class="vert-line">&nbsp;</div>
-        <div id="vline17" class="vert-line">&nbsp;</div>
-        <div id="vline18" class="vert-line">&nbsp;</div>
-        <div id="vline19" class="vert-line">&nbsp;</div>
-        <div id="vline20" class="vert-line">&nbsp;</div>
-        <div id="vline21" class="vert-line">&nbsp;</div>
-        <div id="vline22" class="vert-line">&nbsp;</div>
-        <div id="vline23" class="vert-line">&nbsp;</div>
-        <div id="vline24" class="vert-line">&nbsp;</div>
-        <div id="vline25" class="vert-line">&nbsp;</div>
-        <div id="vline26" class="vert-line">&nbsp;</div>
-        <div id="vline27" class="vert-line">&nbsp;</div>
-        <div id="vline28" class="vert-line">&nbsp;</div>
-        <div id="vline29" class="vert-line">&nbsp;</div>
-        <div id="vline30" class="vert-line">&nbsp;</div>
-        <div id="vline31" class="vert-line">&nbsp;</div>
-        <div id="vline32" class="vert-line">&nbsp;</div>
-        <div id="vline33" class="vert-line">&nbsp;</div>
-        <div id="vline34" class="vert-line">&nbsp;</div>
-        <div id="vline35" class="vert-line">&nbsp;</div>
-        <div id="vline36" class="vert-line">&nbsp;</div>
-        <div id="vline37" class="vert-line">&nbsp;</div>
-        <div id="vline38" class="vert-line">&nbsp;</div>
-        <div id="vline39" class="vert-line">&nbsp;</div>
-        <div id="vline40" class="vert-line">&nbsp;</div>
-        <div id="vline41" class="vert-line">&nbsp;</div>
-        <div id="vline42" class="vert-line">&nbsp;</div>
-        <div id="vline43" class="vert-line">&nbsp;</div>
-        <div id="vline44" class="vert-line">&nbsp;</div>
-        <div id="vline45" class="vert-line">&nbsp;</div>
-        <div id="vline46" class="vert-line">&nbsp;</div>
-        <div id="vline47" class="vert-line">&nbsp;</div>
-        <div id="vline48" class="vert-line">&nbsp;</div>
-        <div id="vline49" class="vert-line">&nbsp;</div>
-        <div id="vline50" class="vert-line">&nbsp;</div>
-        <div id="vline51" class="vert-line">&nbsp;</div>
-        <div id="vline52" class="vert-line">&nbsp;</div>
-        <div id="vline53" class="vert-line">&nbsp;</div>
-        <div id="vline54" class="vert-line">&nbsp;</div>
-        <div id="vline55" class="vert-line">&nbsp;</div>
-        <div id="vline56" class="vert-line">&nbsp;</div>
-        <div id="vline57" class="vert-line">&nbsp;</div>
-        <div id="vline58" class="vert-line">&nbsp;</div>
-        <div id="vline59" class="vert-line">&nbsp;</div>
-        <div id="vline60" class="vert-line">&nbsp;</div>
-        <div id="vline61" class="vert-line">&nbsp;</div>
-        <div id="vline62" class="vert-line">&nbsp;</div>
-        <div id="vline63" class="vert-line">&nbsp;</div>
-        <div id="vline64" class="vert-line">&nbsp;</div>
-        <div id="vline65" class="vert-line">&nbsp;</div>
 
       </div>
     </div>
