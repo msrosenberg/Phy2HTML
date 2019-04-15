@@ -2,7 +2,7 @@
 Phy2HTML
 """
 
-from typing import TextIO, Tuple
+from typing import Tuple
 import tree_utils
 
 
@@ -26,67 +26,73 @@ class Taxon:
         self.row = row
 
 
-def start_html(outfile: TextIO) -> None:
-    outfile.write("<html>\n")
-    outfile.write("  <head>\n")
+def start_html(outlist: list) -> None:
+    outlist.append("<html>\n")
+    outlist.append("  <head>\n")
 
 
-def end_head_section(outfile: TextIO) -> None:
-    outfile.write("  </head>\n")
-    outfile.write("  <body>\n")
+def end_head_section(outlist: list) -> None:
+    outlist.append("  </head>\n")
+    outlist.append("  <body>\n")
 
 
-def end_html(outfile: TextIO) -> None:
-    outfile.write("  </body>\n")
-    outfile.write("</html>\n")
+def end_html(outlist: list) -> None:
+    outlist.append("  </body>\n")
+    outlist.append("</html>\n")
 
 
-def write_style_to_head(outfile: TextIO, nrows: int, ncols: int, taxa: list, branches: list, vlines: list) -> None:
-    outfile.write("    <style>\n")
-    outfile.write("      .phylogeny {\n")
-    outfile.write("                   display: grid;\n")
-    outfile.write("                   grid-template-rows: repeat({}, 20px);\n".format(nrows))
-    outfile.write("                   grid-template-columns: repeat({}, 40px) 200px;\n".format(ncols-1))
-    outfile.write("                 }\n")
-    outfile.write("      .taxon-name { align-self: center; padding-left: 10px }\n")
-    outfile.write("      .genus-species-name {font-style: italic }\n")
-    outfile.write("      .branch-line { border-bottom: solid black 1px; text-align: center }\n")
-    outfile.write("      .vert-line { border-right: solid black 1px }\n")
-    outfile.write("\n")
+def write_style_to_head(outlist: list, nrows: int, ncols: int, taxa: list, branches: list, vlines: list,
+                        col_width: str, row_height: str, name_width: str, prefix: str) -> None:
+    outlist.append("    <style>\n")
+    outlist.append("      .phylogeny {\n")
+    outlist.append("                   display: grid;\n")
+    outlist.append("                   grid-template-rows: repeat({}, {});\n".format(nrows, row_height))
+    outlist.append("                   grid-template-columns: repeat({}, {}) {};\n".format(ncols-1, col_width,
+                                                                                           name_width))
+    outlist.append("                 }\n")
+    outlist.append("      .taxon-name { align-self: center; padding-left: 10px }\n")
+    outlist.append("      .genus-species-name {font-style: italic }\n")
+    outlist.append("      .branch-line { border-bottom: solid black 1px; text-align: center }\n")
+    outlist.append("      .vert-line { border-right: solid black 1px }\n")
+    outlist.append("\n")
     for i, t in enumerate(taxa):
-        outfile.write("	     #taxon{} {{ grid-area: {} / {} / span 2 / span 1 }}\n".format(i+1, t.row, ncols))
-    outfile.write("\n")
+        outlist.append("	     #{}taxon{} {{ grid-area: {} / {} / span 2 / span 1 }}\n".format(prefix,
+                                                                                                 i+1,
+                                                                                                 t.row,
+                                                                                                 ncols))
+    outlist.append("\n")
     for i, b in enumerate(branches):
-        outfile.write("	     #branch{} {{ grid-area: {} / {} / span 1 / span {} }}\n".format(i+1,
-                                                                                             b.row,
-                                                                                             b.min_col,
-                                                                                             b.col_span))
-    outfile.write("\n")
+        outlist.append("	     #{}branch{} {{ grid-area: {} / {} / span 1 / span {} }}\n".format(prefix, i+1,
+                                                                                                   b.row,
+                                                                                                   b.min_col,
+                                                                                                   b.col_span))
+    outlist.append("\n")
     for i, v in enumerate(vlines):
-        outfile.write("	     #vline{} {{ grid-area: {} / {} / span {} / span 1 }}\n".format(i+1,
-                                                                                            v.min_row,
-                                                                                            v.col,
-                                                                                            v.row_span))
-    outfile.write("\n")
-    outfile.write("    </style>\n")
+        outlist.append("	     #{}vline{} {{ grid-area: {} / {} / span {} / span 1 }}\n".format(prefix,
+                                                                                                  i+1,
+                                                                                                  v.min_row,
+                                                                                                  v.col,
+                                                                                                  v.row_span))
+    outlist.append("\n")
+    outlist.append("    </style>\n")
 
 
-def write_tree_to_body(outfile: TextIO, taxa: list, branches: list, vlines: list) -> None:
-    outfile.write("    <div class=\"phylogeny_container\">\n")
-    outfile.write("      <div class=\"phylogeny\">\n")
-    outfile.write("\n")
+def write_tree_to_body(outlist: list, taxa: list, branches: list, vlines: list, prefix: str) -> None:
+    outlist.append("    <div id=\"{}unique_phylogeny_container\" class=\"phylogeny_container\">\n".format(prefix))
+    outlist.append("      <div id=\"{}unique_phylogeny\" class=\"phylogeny\">\n".format(prefix))
+    outlist.append("\n")
     for i, t in enumerate(taxa):
-        outfile.write("        <div id=\"taxon{}\" "
-                      "class=\"genus-species-name taxon-name\">{}</div>\n".format(i+1, t.node.name))
-    outfile.write("\n")
+        outlist.append("        <div id=\"{}taxon{}\" "
+                       "class=\"genus-species-name taxon-name\">{}</div>\n".format(prefix, i+1, t.node.name))
+    outlist.append("\n")
     for b in range(len(branches)):
-        outfile.write("        <div id=\"branch{}\" class=\"branch-line\">&nbsp;</div>\n".format(b+1))
-    outfile.write("\n")
+        outlist.append("        <div id=\"{}branch{}\" class=\"branch-line\">&nbsp;</div>\n".format(prefix, b+1))
+    outlist.append("\n")
     for v in range(len(vlines)):
-        outfile.write("        <div id=\"vline{}\" class=\"vert-line\">&nbsp;</div>\n".format(v+1))
-    outfile.write("\n")
-    outfile.write("      </div>\n")
-    outfile.write("    </div>\n")
+        outlist.append("        <div id=\"{}vline{}\" class=\"vert-line\">&nbsp;</div>\n".format(prefix, v+1))
+    outlist.append("\n")
+    outlist.append("      </div>\n")
+    outlist.append("    </div>\n")
 
 
 def total_rows_per_node(n: int, rows_per_tip: int) -> int:
@@ -180,7 +186,8 @@ def add_node_depth(tree: tree_utils.Node, max_depth: int) -> None:
         add_node_depth(d, max_depth)
 
 
-def create_html_tree(inname: str, outname: str, rows_per_tip: int = 2) -> None:
+def create_html_tree(inname: str, outname: str, col_width: str = "40px", row_height: str = "10px",
+                     name_width: str = "200px", prefix: str = "", rows_per_tip: int = 2) -> list:
     with open(inname, "r") as infile:
         newick_str = infile.readline()
     print()
@@ -196,26 +203,35 @@ def create_html_tree(inname: str, outname: str, rows_per_tip: int = 2) -> None:
     ncols = tree.max_node_tip_count() + 1
     add_node_depth(tree, ncols+1)
     taxa, branches, vlines = calculate_tree(tree, nrows, ncols, rows_per_tip)
-    with open(outname, "w") as outfile:
-        start_html(outfile)
-        write_style_to_head(outfile, nrows, ncols, taxa, branches, vlines)
-        end_head_section(outfile)
-        write_tree_to_body(outfile, taxa, branches, vlines)
-        end_html(outfile)
+    outlist = []
+    start_html(outlist)
+    write_style_to_head(outlist, nrows, ncols, taxa, branches, vlines, col_width, row_height, name_width, prefix)
+    end_head_section(outlist)
+    write_tree_to_body(outlist, taxa, branches, vlines, prefix)
+    end_html(outlist)
+    if outname != "":  # if output file name is provided, write to file
+        with open(outname, "w") as outfile:
+            outfile.writelines(outlist)
     print("HTML file created: " + outname)
+    return outlist
+
+
+def query_user(prompt: str, default: str) -> str:
+    x = input("{} [default={}]: ".format(prompt, default))
+    if x == "":
+        x = default
+    return x
 
 
 def main():
     # get input parameters
-    default = "fiddler_tree.nwk"
-    inname = input("Name of tree file [default={}]: ".format(default))
-    if inname == "":
-        inname = default
-    default = "test_tree.html"
-    outname = input("Name of output HTML file [default={}]: ".format(default))
-    if outname == "":
-        outname = default
-    create_html_tree(inname, outname)
+    inname = query_user("Name of tree file", "fiddler_tree.nwk")
+    outname = query_user("Name of output HTML file", "test_tree.html")
+    col_width = query_user("Column width", "40px")
+    row_height = query_user("Row height", "10px")
+    name_width = query_user("Width of tip labels", "200px")
+    prefix = query_user("(Optional) CSS ID prefix", "")
+    create_html_tree(inname, outname, col_width, row_height, name_width, prefix)
 
 
 if __name__ == "__main__":
