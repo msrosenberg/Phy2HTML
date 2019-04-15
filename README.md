@@ -12,6 +12,6 @@ Two sample Newick files are included, one with 11 taxa and one with 66. There is
 
 The code is written in Python 3 and works in vanilla Python with no external dependencies.
 
-To use, simply run phy2ml.py (for an interactive mode that will prompt for input and output file names) or import it and call the function *create_html_tree(inname, outname)* where inname is the name of a simple text file containing a tree in Newick format and outname is the desired name for the HTML output.
+To use, simply run phy2html.py (for an interactive mode that will prompt for input and output file names) or import it and call the function *create_html_tree(inname, outname)* where inname is the name of a simple text file containing a tree in Newick format and outname is the desired name for the HTML output.
 
 More complicated interfaces and options may be available on request.
