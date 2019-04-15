@@ -3,7 +3,7 @@
     <style>
       .phylogeny {
                    display: grid;
-                   grid-template-rows: repeat(42, 20px);
+                   grid-template-rows: repeat(42, 10px);
                    grid-template-columns: repeat(6, 40px) 200px;
                  }
       .taxon-name { align-self: center; padding-left: 10px }
@@ -57,7 +57,7 @@
   </head>
   <body>
     <div class="phylogeny_container">
-      <div class="phylogeny">
+      <div id="_phylogeny" class="phylogeny">
 
         <div id="taxon1" class="genus-species-name taxon-name">Uca</div>
         <div id="taxon2" class="genus-species-name taxon-name">Afruca</div>
