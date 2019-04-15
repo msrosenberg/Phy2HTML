@@ -79,7 +79,7 @@ def write_style_to_head(outlist: list, nrows: int, ncols: int, taxa: list, branc
 
 def write_tree_to_body(outlist: list, taxa: list, branches: list, vlines: list, prefix: str) -> None:
     outlist.append("    <div id=\"{}unique_phylogeny_container\" class=\"phylogeny_container\">\n".format(prefix))
-    outlist.append("      <div id=\"{}phylogeny\">\n".format(prefix))
+    outlist.append("      <div id=\"{}phylogeny\" class=\"phylogeny_grid\">\n".format(prefix))
     outlist.append("\n")
     for i, t in enumerate(taxa):
         outlist.append("        <div id=\"{0}taxon{1}\" "
