@@ -56,23 +56,16 @@ def write_style_to_head(outlist: list, nrows: int, ncols: int, taxa: list, branc
     outlist.append("      .{}vert-line {{ border-right: solid black 1px }}\n".format(prefix))
     outlist.append("\n")
     for i, t in enumerate(taxa):
-        outlist.append("	     #{}taxon{} {{ grid-area: {} / {} / span 2 / span 1 }}\n".format(prefix,
-                                                                                                 i+1,
-                                                                                                 t.row,
-                                                                                                 ncols))
+        outlist.append("      #{}taxon{} {{ grid-area: {} / {} / span 2 / span 1 }}\n".format(prefix, i+1,
+                                                                                              t.row, ncols))
     outlist.append("\n")
     for i, b in enumerate(branches):
-        outlist.append("	     #{}branch{} {{ grid-area: {} / {} / span 1 / span {} }}\n".format(prefix, i+1,
-                                                                                                   b.row,
-                                                                                                   b.min_col,
-                                                                                                   b.col_span))
+        outlist.append("      #{}branch{} {{ grid-area: {} / {} / span 1 / span {} }}\n".format(prefix, i+1, b.row,
+                                                                                                b.min_col, b.col_span))
     outlist.append("\n")
     for i, v in enumerate(vlines):
-        outlist.append("	     #{}vline{} {{ grid-area: {} / {} / span {} / span 1 }}\n".format(prefix,
-                                                                                                  i+1,
-                                                                                                  v.min_row,
-                                                                                                  v.col,
-                                                                                                  v.row_span))
+        outlist.append("      #{}vline{} {{ grid-area: {} / {} / span {} / span 1 }}\n".format(prefix,  i+1, v.min_row,
+                                                                                               v.col, v.row_span))
     outlist.append("\n")
     outlist.append("    </style>\n")
 
