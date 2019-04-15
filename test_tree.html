@@ -1,13 +1,13 @@
 <html>
   <head>
     <style>
-      .phylogeny {
+      #phylogeny {
                    display: grid;
                    grid-template-rows: repeat(42, 10px);
                    grid-template-columns: repeat(6, 40px) 200px;
                  }
       .taxon-name { align-self: center; padding-left: 10px }
-      .genus-species-name {font-style: italic }
+      .genus-species-name { font-style: italic }
       .branch-line { border-bottom: solid black 1px; text-align: center }
       .vert-line { border-right: solid black 1px }
 
@@ -56,8 +56,8 @@
     </style>
   </head>
   <body>
-    <div class="phylogeny_container">
-      <div id="_phylogeny" class="phylogeny">
+    <div id="unique_phylogeny_container" class="phylogeny_container">
+      <div class="phylogeny">
 
         <div id="taxon1" class="genus-species-name taxon-name">Uca</div>
         <div id="taxon2" class="genus-species-name taxon-name">Afruca</div>

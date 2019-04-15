@@ -44,16 +44,16 @@ def end_html(outlist: list) -> None:
 def write_style_to_head(outlist: list, nrows: int, ncols: int, taxa: list, branches: list, vlines: list,
                         col_width: str, row_height: str, name_width: str, prefix: str) -> None:
     outlist.append("    <style>\n")
-    outlist.append("      .phylogeny {\n")
+    outlist.append("      #{}phylogeny {{\n".format(prefix))
     outlist.append("                   display: grid;\n")
     outlist.append("                   grid-template-rows: repeat({}, {});\n".format(nrows, row_height))
     outlist.append("                   grid-template-columns: repeat({}, {}) {};\n".format(ncols-1, col_width,
                                                                                            name_width))
     outlist.append("                 }\n")
-    outlist.append("      .taxon-name { align-self: center; padding-left: 10px }\n")
-    outlist.append("      .genus-species-name {font-style: italic }\n")
-    outlist.append("      .branch-line { border-bottom: solid black 1px; text-align: center }\n")
-    outlist.append("      .vert-line { border-right: solid black 1px }\n")
+    outlist.append("      .{}taxon-name {{ align-self: center; padding-left: 10px }}\n".format(prefix))
+    outlist.append("      .{}genus-species-name {{ font-style: italic }}\n".format(prefix))
+    outlist.append("      .{}branch-line {{ border-bottom: solid black 1px; text-align: center }}\n".format(prefix))
+    outlist.append("      .{}vert-line {{ border-right: solid black 1px }}\n".format(prefix))
     outlist.append("\n")
     for i, t in enumerate(taxa):
         outlist.append("	     #{}taxon{} {{ grid-area: {} / {} / span 2 / span 1 }}\n".format(prefix,
@@ -79,17 +79,17 @@ def write_style_to_head(outlist: list, nrows: int, ncols: int, taxa: list, branc
 
 def write_tree_to_body(outlist: list, taxa: list, branches: list, vlines: list, prefix: str) -> None:
     outlist.append("    <div id=\"{}unique_phylogeny_container\" class=\"phylogeny_container\">\n".format(prefix))
-    outlist.append("      <div id=\"{}unique_phylogeny\" class=\"phylogeny\">\n".format(prefix))
+    outlist.append("      <div id=\"{}phylogeny\">\n".format(prefix))
     outlist.append("\n")
     for i, t in enumerate(taxa):
-        outlist.append("        <div id=\"{}taxon{}\" "
-                       "class=\"genus-species-name taxon-name\">{}</div>\n".format(prefix, i+1, t.node.name))
+        outlist.append("        <div id=\"{0}taxon{1}\" "
+                       "class=\"{0}genus-species-name {0}taxon-name\">{2}</div>\n".format(prefix, i+1, t.node.name))
     outlist.append("\n")
     for b in range(len(branches)):
-        outlist.append("        <div id=\"{}branch{}\" class=\"branch-line\">&nbsp;</div>\n".format(prefix, b+1))
+        outlist.append("        <div id=\"{0}branch{1}\" class=\"{0}branch-line\">&nbsp;</div>\n".format(prefix, b+1))
     outlist.append("\n")
     for v in range(len(vlines)):
-        outlist.append("        <div id=\"{}vline{}\" class=\"vert-line\">&nbsp;</div>\n".format(prefix, v+1))
+        outlist.append("        <div id=\"{0}vline{1}\" class=\"{0}vert-line\">&nbsp;</div>\n".format(prefix, v+1))
     outlist.append("\n")
     outlist.append("      </div>\n")
     outlist.append("    </div>\n")
