@@ -188,7 +188,9 @@ def create_html_tree(inname: str, outname: str, col_width: str = "40px", row_hei
                      name_width: str = "200px", prefix: str = "", label_branches: bool = False,
                      rows_per_tip: int = 2) -> list:
     with open(inname, "r") as infile:
-        newick_str = infile.readline()
+        newick_str = infile.read()
+    newick_str = newick_str[:newick_str.find(";")+1]
+    newick_str.replace("\n", "")
     print()
     print("Input file: " + inname)
     print("Imported Tree String: ", newick_str)
