@@ -186,19 +186,21 @@ def add_node_depth(tree: tree_utils.Node, max_depth: int) -> None:
 
 def create_html_tree(inname: str, outname: str, col_width: str = "40px", row_height: str = "10px",
                      name_width: str = "200px", prefix: str = "", label_branches: bool = False,
-                     rows_per_tip: int = 2) -> list:
+                     rows_per_tip: int = 2, verbose: bool = True) -> list:
     with open(inname, "r") as infile:
         newick_str = infile.read()
     newick_str = newick_str[:newick_str.find(";")+1]
     newick_str.replace("\n", "")
-    print()
-    print("Input file: " + inname)
-    print("Imported Tree String: ", newick_str)
-    print()
+    if verbose:
+        print()
+        print("Input file: " + inname)
+        print("Imported Tree String: ", newick_str)
+        print()
     tree = tree_utils.read_newick_tree(newick_str)
-    print("File read successfully.")
-    print("Tree contains", tree.n_tips(), "tips.")
-    print()
+    if verbose:
+        print("File read successfully.")
+        print("Tree contains", tree.n_tips(), "tips.")
+        print()
     ntips = tree.n_tips()
     nrows = total_rows_per_node(ntips, rows_per_tip)
     ncols = tree.max_node_tip_count() + 1
@@ -213,7 +215,8 @@ def create_html_tree(inname: str, outname: str, col_width: str = "40px", row_hei
     if outname != "":  # if output file name is provided, write to file
         with open(outname, "w") as outfile:
             outfile.writelines(outlist)
-    print("HTML file created: " + outname)
+    if verbose:
+        print("HTML file created: " + outname)
     return outlist
 
 
