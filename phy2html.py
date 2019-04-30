@@ -215,8 +215,8 @@ def create_html_tree(inname: str, outname: str, col_width: str = "40px", row_hei
     if outname != "":  # if output file name is provided, write to file
         with open(outname, "w") as outfile:
             outfile.writelines(outlist)
-    if verbose:
-        print("HTML file created: " + outname)
+        if verbose:
+            print("HTML file created: " + outname)
     return outlist
 
 
