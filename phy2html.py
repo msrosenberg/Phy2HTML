@@ -2,6 +2,7 @@
 Phy2HTML
 """
 
+from math import trunc
 from typing import Tuple
 import tree_utils
 
@@ -23,9 +24,10 @@ class VLine:
 
 
 class Taxon:
-    def __init__(self, node: tree_utils.Node, row: int = 0):
+    def __init__(self, node: tree_utils.Node, row: int = 0, col: int = 0):
         self.node = node
         self.row = row
+        self.col = col
 
 
 def start_html(outlist: list) -> None:
@@ -44,7 +46,7 @@ def end_html(outlist: list) -> None:
 
 
 def write_style_to_head(outlist: list, nrows: int, ncols: int, taxa: list, branches: list, vlines: list,
-                        col_width: str, row_height: str, name_width: str, prefix: str) -> None:
+                        col_width: str, row_height: str, name_width: str, prefix: str, scale_branches: bool) -> None:
     outlist.append("    <style>\n")
     outlist.append("      #{}phylogeny {{\n".format(prefix))
     outlist.append("                   display: grid;\n")
@@ -58,8 +60,16 @@ def write_style_to_head(outlist: list, nrows: int, ncols: int, taxa: list, branc
     outlist.append("      .{}vert-line {{ border-right: solid black 1px; text-align: right }}\n".format(prefix))
     outlist.append("\n")
     for i, t in enumerate(taxa):
-        outlist.append("      #{}taxon{} {{ grid-area: {} / {} / span 2 / span 1 }}\n".format(prefix, i+1,
-                                                                                              t.row, ncols))
+        if scale_branches:
+            tcol = t.col + 1
+            if tcol > ncols:
+                tcol = ncols
+            cspan = ncols - tcol + 1
+        else:
+            tcol = ncols
+            cspan = 1
+        outlist.append("      #{}taxon{} {{ grid-area: {} / {} / span 2 / span {} }}\n".format(prefix, i+1, t.row,
+                                                                                               tcol, cspan))
     outlist.append("\n")
     for i, b in enumerate(branches):
         outlist.append("      #{}branch{} {{ grid-area: {} / {} / span 1 / span {} }}\n".format(prefix, i+1, b.row,
@@ -97,7 +107,7 @@ def total_rows_per_node(n: int, rows_per_tip: int) -> int:
 
 
 def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int, taxa: list, branches: list,
-                   vlines: list, rows_per_tip: int, label_branches: bool) -> int:
+                   vlines: list, rows_per_tip: int, label_branches: bool, scale_branches: bool, scale: float) -> int:
     """
     calculate positions of taxa, branches, and vertical connectors on subtrees
     """
@@ -106,7 +116,10 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
     determine the number of columns for the branch connecting a node to its ancestor
     """
     if tree.ancestor is not None:
-        col_span = tree.node_depth - tree.ancestor.node_depth
+        if scale_branches:
+            col_span = trunc(tree.branch_length * scale)
+        else:
+            col_span = tree.node_depth - tree.ancestor.node_depth
     else:
         col_span = 0
 
@@ -118,7 +131,6 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
         horizontal_connections = []
         vert_top_row = 0
         vert_bottom_row = 0
-        # nd = tree.n_tips()
         top_row = min_row
         for i, d in enumerate(tree.descendants):
             """
@@ -129,7 +141,7 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
             bottom_row = top_row + d_rows - 1
             # draw the descendant in its own smaller bounded box
             row = tree_recursion(d, min_col + col_span, max_col, top_row, bottom_row, taxa, branches, vlines,
-                                 rows_per_tip, label_branches)
+                                 rows_per_tip, label_branches, scale_branches, scale)
             """
             the rows of the first and last descendants represent the positions to draw the vertical line 
             connecting all of the descendants
@@ -163,7 +175,7 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
         if the node has no descendants, add it to the taxon list
         """
         row = min_row
-        new_taxon = Taxon(tree, row)
+        new_taxon = Taxon(tree, row, min_col + col_span)
         taxa.append(new_taxon)
 
     # add the branch connecting the node to its ancestor
@@ -177,11 +189,17 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
 
 
 def calculate_tree(tree: tree_utils.Node, nrows: int, ncols: int, rows_per_tip: int,
-                   label_branches: bool) -> Tuple[list, list, list]:
+                   label_branches: bool, scale_branches: bool = False) -> Tuple[list, list, list]:
     taxa = []
     branches = []
     vlines = []
-    tree_recursion(tree, 1, ncols, 1, nrows, taxa, branches, vlines, rows_per_tip, label_branches)
+    if scale_branches:
+        tree_depth = tree.max_node_tip_length()
+        scale = (ncols - 1) / tree_depth
+    else:
+        scale = 1
+    tree_recursion(tree, 1, ncols, 1, nrows, taxa, branches, vlines, rows_per_tip, label_branches, scale_branches,
+                   scale)
     return taxa, branches, vlines
 
 
@@ -197,7 +215,8 @@ def add_node_depth(tree: tree_utils.Node, max_depth: int) -> None:
 
 def create_html_tree(inname: str, outname: str, col_width: str = "40px", row_height: str = "10px",
                      name_width: str = "200px", prefix: str = "", label_branches: bool = False,
-                     rows_per_tip: int = 2, verbose: bool = True) -> list:
+                     scale_branches: bool = False, tree_cols: int = 1, rows_per_tip: int = 2,
+                     verbose: bool = True) -> list:
     with open(inname, "r") as infile:
         newick_str = infile.read()
     newick_str = newick_str[:newick_str.find(";")+1]
@@ -214,12 +233,16 @@ def create_html_tree(inname: str, outname: str, col_width: str = "40px", row_hei
         print()
     ntips = tree.n_tips()
     nrows = total_rows_per_node(ntips, rows_per_tip)
-    ncols = tree.max_node_tip_count() + 1
-    add_node_depth(tree, ncols+1)
-    taxa, branches, vlines = calculate_tree(tree, nrows, ncols, rows_per_tip, label_branches)
+    if scale_branches:
+        ncols = tree_cols + 1  # ools for tree plus one for tip labels
+    else:
+        ncols = tree.max_node_tip_count() + 1
+        add_node_depth(tree, ncols+1)
+    taxa, branches, vlines = calculate_tree(tree, nrows, ncols, rows_per_tip, label_branches, scale_branches)
     outlist = []
     start_html(outlist)
-    write_style_to_head(outlist, nrows, ncols, taxa, branches, vlines, col_width, row_height, name_width, prefix)
+    write_style_to_head(outlist, nrows, ncols, taxa, branches, vlines, col_width, row_height, name_width, prefix,
+                        scale_branches)
     end_head_section(outlist)
     write_tree_to_body(outlist, taxa, branches, vlines, prefix)
     end_html(outlist)
@@ -242,7 +265,22 @@ def main():
     # get input parameters
     inname = query_user("Name of tree file", "fiddler_tree.nwk")
     outname = query_user("Name of output HTML file", "test_tree.html")
-    col_width = query_user("Column width", "40px")
+    scale_branches = query_user("Scale branch lengths [Y/N]", "N")
+    tree_cols = 0
+    if scale_branches.lower() == "y":
+        scale_branches = True
+        col_width = "1px"
+        while tree_cols < 1:
+            try:
+                tree_cols = int(query_user("Draw tree over how many columns", "1000"))
+                if tree_cols < 1:
+                    raise ValueError
+            except ValueError:
+                print("Please enter a positive integer\n")
+                tree_cols = 0
+    else:
+        scale_branches = False
+        col_width = query_user("Column width", "40px")
     row_height = query_user("Row height", "10px")
     name_width = query_user("Width of tip labels", "200px")
     prefix = query_user("(Optional) CSS ID prefix", "")
@@ -251,7 +289,8 @@ def main():
         label_branches = True
     else:
         label_branches = False
-    create_html_tree(inname, outname, col_width, row_height, name_width, prefix, label_branches)
+    create_html_tree(inname, outname, col_width, row_height, name_width, prefix, label_branches, scale_branches,
+                     tree_cols)
 
 
 if __name__ == "__main__":
