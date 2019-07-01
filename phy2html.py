@@ -15,10 +15,11 @@ class Branch:
 
 
 class VLine:
-    def __init__(self, min_row: int = 0, row_span: int = 0, col: int = 0):
+    def __init__(self, min_row: int = 0, row_span: int = 0, col: int = 0, label: str = "&nbsp;"):
         self.min_row = min_row
         self.row_span = row_span
         self.col = col
+        self.label = label
 
 
 class Taxon:
@@ -54,7 +55,7 @@ def write_style_to_head(outlist: list, nrows: int, ncols: int, taxa: list, branc
     outlist.append("      .{}taxon-name {{ align-self: center; padding-left: 10px }}\n".format(prefix))
     outlist.append("      .{}genus-species-name {{ font-style: italic }}\n".format(prefix))
     outlist.append("      .{}branch-line {{ border-bottom: solid black 1px; text-align: center }}\n".format(prefix))
-    outlist.append("      .{}vert-line {{ border-right: solid black 1px }}\n".format(prefix))
+    outlist.append("      .{}vert-line {{ border-right: solid black 1px; text-align: right }}\n".format(prefix))
     outlist.append("\n")
     for i, t in enumerate(taxa):
         outlist.append("      #{}taxon{} {{ grid-area: {} / {} / span 2 / span 1 }}\n".format(prefix, i+1,
@@ -83,8 +84,9 @@ def write_tree_to_body(outlist: list, taxa: list, branches: list, vlines: list, 
         outlist.append("        <div id=\"{0}branch{1}\" class=\"{0}branch-line\">{2}</div>\n".format(prefix, b+1,
                                                                                                       branch.label))
     outlist.append("\n")
-    for v in range(len(vlines)):
-        outlist.append("        <div id=\"{0}vline{1}\" class=\"{0}vert-line\">&nbsp;</div>\n".format(prefix, v+1))
+    for v, vline in enumerate(vlines):
+        outlist.append("        <div id=\"{0}vline{1}\" class=\"{0}vert-line\">{2}</div>\n".format(prefix, v+1,
+                                                                                                   vline.label))
     outlist.append("\n")
     outlist.append("      </div>\n")
     outlist.append("    </div>\n")
@@ -113,6 +115,7 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
     right of this node, and the rows defined for the entire node
     """
     if tree.n_descendants() > 0:  # this is an internal node
+        horizontal_connections = []
         vert_top_row = 0
         vert_bottom_row = 0
         # nd = tree.n_tips()
@@ -136,17 +139,25 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
             elif i == tree.n_descendants() - 1:
                 vert_bottom_row = row
             top_row = bottom_row + rows_per_tip + 1
-
-        """
-        add the vertical line connecting the descendants at the horizontal position of the node
-        """
-        new_line = VLine(vert_top_row, vert_bottom_row - vert_top_row + 1, min_col+col_span)
-        vlines.append(new_line)
+            horizontal_connections.append(row)
 
         """
         the vertical position of the node should be the midpoint of the vertical line connecting the descendants
         """
         row = ((vert_bottom_row - vert_top_row) // 2) + vert_top_row
+        horizontal_connections.append(row)
+
+        """
+        add the vertical line connecting the descendants at the horizontal position of the node
+        """
+        horizontal_connections.sort()
+        for i in range(1, len(horizontal_connections)):
+            new_line = VLine(horizontal_connections[i-1]+1, horizontal_connections[i]-horizontal_connections[i-1],
+                             min_col+col_span)
+            vlines.append(new_line)
+            if label_branches:
+                new_line.label = "v" + str(len(vlines))
+
     else:  # this is a tip node
         """
         if the node has no descendants, add it to the taxon list
