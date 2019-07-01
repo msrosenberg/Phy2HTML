@@ -168,7 +168,7 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
                              min_col+col_span)
             vlines.append(new_line)
             if label_branches:
-                new_line.label = "v" + str(len(vlines))
+                new_line.label = "vline" + str(len(vlines))
 
     else:  # this is a tip node
         """
@@ -284,7 +284,7 @@ def main():
     row_height = query_user("Row height", "10px")
     name_width = query_user("Width of tip labels", "200px")
     prefix = query_user("(Optional) CSS ID prefix", "")
-    label_branches = query_user("Label branches [Y/N]", "N")
+    label_branches = query_user("Label branches with CSS names [Y/N]", "N")
     if label_branches.lower() == "y":
         label_branches = True
     else:
