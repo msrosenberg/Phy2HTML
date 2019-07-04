@@ -164,11 +164,12 @@ def tree_recursion(tree, min_col: int, max_col: int, min_row: int, max_row: int,
         """
         horizontal_connections.sort()
         for i in range(1, len(horizontal_connections)):
-            new_line = VLine(horizontal_connections[i-1]+1, horizontal_connections[i]-horizontal_connections[i-1],
-                             min_col+col_span)
-            vlines.append(new_line)
-            if label_branches:
-                new_line.label = "vline" + str(len(vlines))
+            if horizontal_connections[i] != horizontal_connections[i-1]:  # skip for lines of zero height
+                new_line = VLine(horizontal_connections[i-1]+1, horizontal_connections[i]-horizontal_connections[i-1],
+                                 min_col+col_span)
+                vlines.append(new_line)
+                if label_branches:
+                    new_line.label = "vline" + str(len(vlines))
 
     else:  # this is a tip node
         """
